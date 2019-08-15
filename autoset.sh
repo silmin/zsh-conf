@@ -4,6 +4,8 @@ type zsh > /dev/null
 
 if [ $? -eq 0 ] ; then
     # zsh is installed
+    pos=`which zsh`
+    chsh -s $pos
     exit 0
 else
     # zsh is not installed
