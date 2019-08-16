@@ -7,6 +7,7 @@ if [ $? -eq 0 ] ; then
     pos=`which zsh`
     chsh -s $pos
 
+    # install prezto
     cd
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "{ZDOTDIR:~$HOME}/.prezto"
 
