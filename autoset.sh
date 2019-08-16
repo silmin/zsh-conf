@@ -15,6 +15,8 @@ if [ $? -eq 0 ] ; then
     for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
         ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done
+
+    lnum=`cat ~/.zpreztorc | grep -n theme | grep zstyle | awk -F':' '{print $1}'`
     
     exit 0
 else
