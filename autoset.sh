@@ -8,13 +8,19 @@ if [ $? -eq 0 ] ; then
     chsh -s $pos
 
     # install prezto
-    cd
+    cd ~
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "{ZDOTDIR:~$HOME}/.prezto"
 
     setopt EXTENDED_GLOB
     for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
         ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done
+
+    # replace theme str 'sorin' to 'pure'
+    lnum=`cat ~/.zpreztorc | grep -n theme | grep zstyle | awk -F':' '{print $1}'`
+    gsed -e "${lnum}s/sorin/pure/g" ~/.zpreztorc >| ~/.zpreztorc.new
+    \cp ~/.zpreztorc.new .zprezto/runcoms/zpreztorc     # disable aliace
+    \rm ~/.zpreztorc.new                                # disable aliace
     
     exit 0
 else
