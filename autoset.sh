@@ -19,6 +19,13 @@ if [ $? -eq 0 ] ; then
     # replace theme str 'sorin' to 'pure'
     lnum=`cat ~/.zpreztorc | grep -n theme | grep zstyle | awk -F':' '{print $1}'`
     sed -e "${lnum}s/sorin/pure/g" ~/.zpreztorc >| ~/.zpreztorc.new
+
+    # set option
+    lnum=`cat ~/.zpreztorc | grep -n \'prompt\' | awk -F':' '{print $1}'`
+    gsed -e "${lnum}isyntax-highlighting \\" \
+        -e "${lnum}iautosuggestions \\" ~/.zpreztorc >| ~/.zpreztorc.new
+
+    # override
     \cp ~/.zpreztorc.new .zprezto/runcoms/zpreztorc     # disable aliace
     \rm ~/.zpreztorc.new                                # disable aliace
 
