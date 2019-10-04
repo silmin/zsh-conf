@@ -7,6 +7,8 @@ if [ $? -eq 0 ] ; then
     pos=`which zsh`
     chsh -s $pos
 
+    \rm ~/.zshr     # disable aliace
+
     # install prezto
     cd ~
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "{ZDOTDIR:~$HOME}/.prezto"
